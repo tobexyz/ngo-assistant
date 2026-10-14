@@ -1,0 +1,68 @@
+# Local runtime: Ollama (CPU only) + Postgres with pgvector.
+# Images pinned by multi-arch index digest (docker buildx imagetools inspect, 2026-10-14):
+#   ollama/ollama:0.40.0                 index sha256:1bef639749741b375e9a1eb2c1346fb57ce52f5432de1f74846e44ccc18e1687
+#                                        (linux/amd64 sha256:2b28812c24b17215d15f8f1c0c2bf939d3b5426ba1e8bea15b046f43d5bd2746)
+#   pgvector/pgvector:0.8.7-pg17-trixie  index sha256:7a7e9f22015b67edb4bef5c59daeebcd7e74bfa570df6ce60ae01237c8648a84
+#                                        (linux/amd64 sha256:c9f9997c9a711499b212133bc33ea05055d11dfb1e2ce243b516b1f55f0e5eb4)
+# Ports bind to 127.0.0.1 only. POSTGRES_PASSWORD comes from .env (see .env.example).
+# Memory budget for a 15 GB host: ollama 8g (llama3.2:1b + bge-m3, optional 3b) + postgres 1g.
+
+name: ngo-assistant
+
+services:
+  ollama:
+    image: ollama/ollama:0.40.0@sha256:1bef639749741b375e9a1eb2c1346fb57ce52f5432de1f74846e44ccc18e1687
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:11434:11434"
+    environment:
+      OLLAMA_KEEP_ALIVE: ${OLLAMA_KEEP_ALIVE:-30m}
+      OLLAMA_NUM_PARALLEL: ${OLLAMA_NUM_PARALLEL:-1}
+      # Without this, Ollama picks 4096 tokens on this CPU-only host (docs/tech.md section 2.2) and silently
+      # truncates long RAG prompts. Same value for retrieval variants A and B (fair comparison).
+      # Memory reasoning: required RAM scales with OLLAMA_NUM_PARALLEL * OLLAMA_CONTEXT_LENGTH (docs/tech.md).
+      # With parallel=1 and 8192, only one 8k context is allocated; llama3.2:1b (1.3GB) and bge-m3 (1.2GB) weights
+      # plus that context are plausible within the 8g limit.
+      # Measured once on 2026-10-14: 2.81 GiB of 8 GiB with llama3.2:1b + bge-m3 at 8192 context (decisions.md,
+      # Group 3 smoke test); the 3b control was not measured.
+      OLLAMA_CONTEXT_LENGTH: ${OLLAMA_CONTEXT_LENGTH:-8192}
+    volumes:
+      - ollama-models:/root/.ollama
+    mem_limit: 8g
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 20s
+    stop_grace_period: 30s
+
+  postgres:
+    image: pgvector/pgvector:0.8.7-pg17-trixie@sha256:7a7e9f22015b67edb4bef5c59daeebcd7e74bfa570df6ce60ae01237c8648a84
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5432:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-ngo}
+      POSTGRES_DB: ${POSTGRES_DB:-ngo}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set it in .env}
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    mem_limit: 1g
+    shm_size: 256m
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$${POSTGRES_USER}\" -d \"$${POSTGRES_DB}\""]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    stop_grace_period: 30s
+
+volumes:
+  ollama-models:
+  pg-data:

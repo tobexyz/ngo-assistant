@@ -1,0 +1,25 @@
+resumeId.txt
+enhancement.txt
+tests.txt
+test_documents
+.venv/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.env
+.env.*
+!.env.example
+.mypy_cache/
+.ruff_cache/
+
+# Editor backup/undo files
+*~
+*.un~
+
+# Scraped or downloaded corpus files: never commit content whose licence
+# does not allow redistribution (see docs/adr/001-scope-and-data.md).
+data/raw/
+data/corpus/
+
+# Eval run outputs
+results/

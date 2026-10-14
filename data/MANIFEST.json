@@ -1,0 +1,77 @@
+{
+ "generated": "2026-10-15",
+ "sources": {
+  "destatis-strom-2024": {
+   "bytes": 88332,
+   "fetched_at": "2026-10-14T19:31:46.125814+00:00",
+   "sha256": "5bc7f80e6d2b2dcb7ee6774d3d7310fbd666b4484579fcd24bb6c8f66bc1f579",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2025/03/PD25_091_43312.html"
+  },
+  "destatis-strom-2025": {
+   "bytes": 90286,
+   "fetched_at": "2026-10-14T19:32:16.498485+00:00",
+   "sha256": "7ffdc0df8c65754528b031b2d81ab21a281b472c2ef10653ef2738ed50213150",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/03/PD26_073_43312.html"
+  },
+  "dewiki-green-it": {
+   "bytes": 194883,
+   "fetched_at": "2026-10-14T19:32:18.518835+00:00",
+   "sha256": "4aec58287326aba2b4189a10575f93c8f8d39f2464ff46850e61e70e18fc42b4",
+   "url": "https://de.wikipedia.org/wiki/Green_IT?oldid=267912244"
+  },
+  "dewiki-rechenzentrum": {
+   "bytes": 604329,
+   "fetched_at": "2026-10-14T19:32:19.740726+00:00",
+   "sha256": "e746932358a3bed68bea1323a4964a029d5e0c8ddef982918d6e0b7eb813a892",
+   "url": "https://de.wikipedia.org/wiki/Rechenzentrum?oldid=271299132"
+  },
+  "ec-cloud-energy-2020": {
+   "bytes": 157772,
+   "fetched_at": "2026-10-14T19:31:15.641350+00:00",
+   "sha256": "3ce78e87b70072a968649ed31eed614de3e96f15f3fbbc8f277a4cdc0c8a992a",
+   "url": "https://commission.europa.eu/news-and-media/news/green-and-digital-study-shows-technical-and-policy-options-limit-surge-energy-consumption-cloud-and-2020-11-09_en"
+  },
+  "eea-biodiversity-2025": {
+   "bytes": 1259503,
+   "fetched_at": "2026-10-14T19:31:10.599135+00:00",
+   "sha256": "325599f379ffed976f677bd568672dfee4e774ab84ae8eaa5c6de5f6e1dfb230",
+   "url": "https://www.eea.europa.eu/en/europe-environment-2025/thematic-briefings/biodiversity-and-ecosystems/state-of-europes-biodiversity"
+  },
+  "eea-ghg-trends-2024": {
+   "bytes": 471884,
+   "fetched_at": "2026-10-14T19:31:09.202300+00:00",
+   "sha256": "200abc39084f2f3d1925f5b31193f0ea803b4a97a2349eb516f0aa88065d0e16",
+   "url": "https://www.eea.europa.eu/en/analysis/publications/european-union-8th-environment-action-programme-1/indicators/01-total-net-greenhouse-gas-emission-trend/@@download/file"
+  },
+  "eea-ghg-trends-2025": {
+   "bytes": 1220160,
+   "fetched_at": "2026-10-14T19:31:08.558799+00:00",
+   "sha256": "d8fcdc84a905a5b56a3c8b4c24c815bb0fa124fcd1b4d887545afd3bbe330c9f",
+   "url": "https://www.eea.europa.eu/en/analysis/indicators/total-greenhouse-gas-emission-trends"
+  },
+  "owid-biodiversity": {
+   "bytes": 284151,
+   "fetched_at": "2026-10-14T19:31:14.399025+00:00",
+   "sha256": "3acfb2657f53fb55577d76e846584af761db69d1b6eb43b097c8f8e9dfd9cc5b",
+   "url": "https://ourworldindata.org/biodiversity"
+  },
+  "owid-co2-emissions": {
+   "bytes": 164697,
+   "fetched_at": "2026-10-14T19:31:12.066692+00:00",
+   "sha256": "6b1e2eb6feec509824813340b8ca33d2fbd82ba94380605d5ba23d26b7c71905",
+   "url": "https://ourworldindata.org/co2-emissions"
+  },
+  "uba-erneuerbare-2025": {
+   "bytes": 253540,
+   "fetched_at": "2026-10-14T19:32:22.152366+00:00",
+   "sha256": "e889597511538d76947c389ef9acd17890a5ddf5e3a6ef50028336b0e013e401",
+   "url": "https://www.umweltbundesamt.de/themen/erneuerbare-energien-in-deutschland-wachstum-2025"
+  },
+  "uba-erneuerbare-pm-2024": {
+   "bytes": 249179,
+   "fetched_at": "2026-10-14T19:32:21.198982+00:00",
+   "sha256": "080f6cf2d34aa946951776f3403d299ef22f45e1394869d57449c0e69c7d93a0",
+   "url": "https://www.umweltbundesamt.de/presse/pressemitteilungen/mehr-strom-aus-erneuerbaren-energien"
+  }
+ }
+}
